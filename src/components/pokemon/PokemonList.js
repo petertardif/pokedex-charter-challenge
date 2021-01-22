@@ -32,7 +32,7 @@ export function PokemonList({ pokemons, searchTerm, filters }) {
 				alignItems='center'
 			>
 				{filteredSearch.map((pokemon) => (
-					<Grid item>
+					<Grid item key={pokemon.id}>
 						<Pokemon
 							className={classes.card}
 							key={pokemon.id}

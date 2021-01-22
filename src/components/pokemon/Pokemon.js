@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -23,32 +24,34 @@ export function Pokemon({ pokemons }) {
 	const classes = useStyles();
 
 	return (
-		<Card className={classes.root}>
-			<CardActionArea>
-				<CardMedia
-					className={classes.media}
-					image={pokemons.img}
-					title={pokemons.name}
-				/>
-				<CardContent>
-					<Typography gutterBottom variant='h5' component='h2'>
-						{pokemons.name}
-					</Typography>
-					<Typography variant='body2' color='textSecondary' component='p'>
-						{pokemons.num}
-						<p>Type: {pokemons.type.map((type) => `${type} `)}</p>
-						<p>
-							Weaknesses:{' '}
-							{pokemons.weaknesses.map((weakness) => `${weakness} `)}
-						</p>
-					</Typography>
-				</CardContent>
-			</CardActionArea>
-			<CardActions>
-				<Button size='small' color='primary'>
-					Learn More
-				</Button>
-			</CardActions>
-		</Card>
+		<Link to={`/pokemon/${pokemons.id}`}>
+			<Card className={classes.root}>
+				<CardActionArea>
+					<CardMedia
+						className={classes.media}
+						image={pokemons.img}
+						title={pokemons.name}
+					/>
+					<CardContent>
+						<Typography gutterBottom variant='h5' component='h2'>
+							{pokemons.name}
+						</Typography>
+						<Typography variant='body2' color='textSecondary' component='span'>
+							{pokemons.num}
+							<p>Type: {pokemons.type.map((type) => `${type} `)}</p>
+							<p>
+								Weaknesses:{' '}
+								{pokemons.weaknesses.map((weakness) => `${weakness} `)}
+							</p>
+						</Typography>
+					</CardContent>
+				</CardActionArea>
+				<CardActions>
+					<Button size='small' color='primary'>
+						Learn More
+					</Button>
+				</CardActions>
+			</Card>
+		</Link>
 	);
 }

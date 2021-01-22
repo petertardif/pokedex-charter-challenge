@@ -1,6 +1,8 @@
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { PokemonList } from './components/pokemon/PokemonList';
+import { PokemonDetail } from './components/pokemon/PokemonDetail';
 import { Search } from './components/pokemon/Search';
 import { SelectType } from './components/pokemon/SelectType';
 import { SelectWeakness } from './components/pokemon/SelectWeakness';
@@ -37,24 +39,33 @@ function App() {
 
 	return (
 		<Container maxWidth='xl' className='App'>
-			<Navbar className='App-header' />
-			<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-			<SelectType
-				pokemons={pokemons}
-				filters={filters}
-				setFilters={setFilters}
-			/>
-			<SelectWeakness
-				pokemons={pokemons}
-				filters={filters}
-				setFilters={setFilters}
-			/>
-			<Button onClick={handleReset}>Reset</Button>
-			<PokemonList
-				pokemons={pokemons}
-				searchTerm={searchTerm}
-				filters={filters}
-			/>
+			<Router>
+				<Switch>
+					<Route path='/pokemon/:id'>
+						<PokemonDetail pokemons={pokemons} />
+					</Route>
+					<Route exact path='/'>
+						<Navbar className='App-header' />
+						<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+						<SelectType
+							pokemons={pokemons}
+							filters={filters}
+							setFilters={setFilters}
+						/>
+						<SelectWeakness
+							pokemons={pokemons}
+							filters={filters}
+							setFilters={setFilters}
+						/>
+						<Button onClick={handleReset}>Reset</Button>
+						<PokemonList
+							pokemons={pokemons}
+							searchTerm={searchTerm}
+							filters={filters}
+						/>
+					</Route>
+				</Switch>
+			</Router>
 		</Container>
 	);
 }
