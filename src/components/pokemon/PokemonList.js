@@ -14,7 +14,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export function PokemonList({ pokemons, searchTerm, filters }) {
+export function PokemonList({
+	pokemons,
+	searchTerm,
+	filters,
+	renderedPokemons,
+}) {
 	const classes = useStyles();
 
 	const searchedPokemon = pokemons.filter((pokemon) =>
@@ -31,7 +36,7 @@ export function PokemonList({ pokemons, searchTerm, filters }) {
 				justify='center'
 				alignItems='center'
 			>
-				{filteredSearch.map((pokemon) => (
+				{renderedPokemons.map((pokemon) => (
 					<Grid item key={pokemon.id}>
 						<Pokemon
 							className={classes.card}

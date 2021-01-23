@@ -1,7 +1,4 @@
-export function SelectType({ pokemons, filters, setFilters }) {
-	const arrOfPokemonTypes = pokemons.flatMap((pokemon) => pokemon.type);
-	const pokemonTypes = Array.from(new Set(arrOfPokemonTypes)).sort();
-
+export function SelectType({ pokemons, filters, setFilters, types }) {
 	const handleChange = (e) => {
 		setFilters({
 			...filters,
@@ -17,7 +14,7 @@ export function SelectType({ pokemons, filters, setFilters }) {
 
 	return (
 		<select onChange={handleChange} multiple>
-			{pokemonTypes.map((type) => (
+			{types.map((type) => (
 				<option key={type} value={type}>
 					{type}
 				</option>

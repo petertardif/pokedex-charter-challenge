@@ -10,3 +10,30 @@ export const filterArray = (array, filters) => {
 		});
 	});
 };
+export const filteredPokemons = (array, filters, searchTerm) => {
+	return array.filter((pokemon) => {
+		let responseTypes = filters.types.every((type) => {
+			return pokemon.type.includes(type);
+		});
+
+		let responseWeaknesses = filters.weaknesses.every((weakness) => {
+			return pokemon.weaknesses.includes(weakness);
+		});
+
+		let searchedPokemon = searchTerm.test(
+			pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+
+		let allPokemons;
+		if (responseTypes.length) {
+			return (allPokemons = allPokemons && responseTypes);
+		}
+		if (responseWeaknesses.length) {
+			return (allPokemons = allPokemons && responseWeaknesses);
+		}
+		if (searchedPokemon.length) {
+			return (allPokemons = allPokemons && searchedPokemon);
+		}
+		return allPokemons;
+	});
+};
