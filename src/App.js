@@ -41,17 +41,29 @@ function App() {
 
 	return (
 		<Container maxWidth='xl' className='App'>
+			<Navbar className='App-header' />
 			<Router>
 				<Switch>
 					<Route path='/pokemon/:id'>
 						<PokemonDetail pokemons={pokemons} />
 					</Route>
 					<Route exact path='/'>
-						<Navbar className='App-header' />
 						<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-						<SelectType pokemons={pokemons} setTypes={setTypes} />
-						<SelectWeakness pokemons={pokemons} setWeaknesses={setWeaknesses} />
-						<Button onClick={handleReset}>Reset</Button>
+						<div className='App-container'>
+							<SelectType pokemons={pokemons} setTypes={setTypes} />
+							<SelectWeakness
+								pokemons={pokemons}
+								setWeaknesses={setWeaknesses}
+							/>
+						</div>
+						<Button
+							onClick={handleReset}
+							variant='contained'
+							color='secondary'
+							styles={{ padding: '20px' }}
+						>
+							Reset Filters
+						</Button>
 						<PokemonList
 							pokemons={pokemons}
 							searchTerm={searchTerm}

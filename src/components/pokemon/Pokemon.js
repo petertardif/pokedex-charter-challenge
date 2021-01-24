@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 	media: {
 		height: 130,
 		width: '100%',
+		backgroundSize: 'contain',
 	},
 	link: {
 		textDecoration: 'none',

@@ -6,6 +6,10 @@ import { Grid } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
+		marginTop: 50,
+	},
+	container: {
+		marginTop: 25,
 	},
 	card: {
 		padding: theme.spacing(2),
@@ -23,7 +27,7 @@ export function PokemonList({ pokemons, searchTerm, types, weaknesses }) {
 	const filteredSearch = typeWeaknessFilter(searchedPokemon, types, weaknesses);
 
 	return (
-		<div>
+		<div className={classes.container}>
 			<Grid
 				container
 				spacing={6}
