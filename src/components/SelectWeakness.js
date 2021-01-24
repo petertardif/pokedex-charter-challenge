@@ -1,19 +1,12 @@
-export function SelectWeakness({ pokemons, filters, setFilters }) {
+export function SelectWeakness({ pokemons, setWeaknesses }) {
 	const arrOfWeaknesses = pokemons.flatMap((pokemon) => pokemon.weaknesses);
 	const pokemonWeaknesses = Array.from(new Set(arrOfWeaknesses)).sort();
 
 	const handleChange = (e) => {
 		// let value = Array.from(e.target.selectedOptions, (option) => option.value);
-		setFilters({
-			...filters,
-			weaknesses: (weaknesses) =>
-				weaknesses.some((x) =>
-					Array.from(
-						e.target.selectedOptions,
-						(option) => option.value
-					).includes(x)
-				),
-		});
+		setWeaknesses(
+			Array.from(e.target.selectedOptions, (option) => option.value)
+		);
 	};
 
 	return (

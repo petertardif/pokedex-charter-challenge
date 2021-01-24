@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { PokemonList } from './components/pokemon/PokemonList';
 import { PokemonDetail } from './components/pokemon/PokemonDetail';
-import { Search } from './components/pokemon/Search';
-import { SelectType } from './components/pokemon/SelectType';
-import { SelectWeakness } from './components/pokemon/SelectWeakness';
+import { Search } from './components/Search';
+import { SelectType } from './components/SelectType';
+import { SelectWeakness } from './components/SelectWeakness';
 import { Button } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 import { Navbar } from './components/Navbar';
@@ -16,7 +16,8 @@ const API_URL =
 function App() {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [pokemons, setPokemons] = useState([]);
-	const [filters, setFilters] = useState({ type: [], weaknesses: [] });
+	const [types, setTypes] = useState([]);
+	const [weaknesses, setWeaknesses] = useState([]);
 
 	const getPokemons = async () => {
 		try {
@@ -33,7 +34,8 @@ function App() {
 	}, []);
 
 	const handleReset = () => {
-		setFilters({ type: [], weaknesses: [] });
+		setTypes([]);
+		setWeaknesses([]);
 		setSearchTerm('');
 	};
 
@@ -47,21 +49,14 @@ function App() {
 					<Route exact path='/'>
 						<Navbar className='App-header' />
 						<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-						<SelectType
-							pokemons={pokemons}
-							filters={filters}
-							setFilters={setFilters}
-						/>
-						<SelectWeakness
-							pokemons={pokemons}
-							filters={filters}
-							setFilters={setFilters}
-						/>
+						<SelectType pokemons={pokemons} setTypes={setTypes} />
+						<SelectWeakness pokemons={pokemons} setWeaknesses={setWeaknesses} />
 						<Button onClick={handleReset}>Reset</Button>
 						<PokemonList
 							pokemons={pokemons}
 							searchTerm={searchTerm}
-							filters={filters}
+							types={types}
+							weaknesses={weaknesses}
 						/>
 					</Route>
 				</Switch>

@@ -14,9 +14,11 @@ const useStyles = makeStyles({
 		padding: 20,
 	},
 	media: {
-		height: 275,
+		height: 130,
 		width: '100%',
-		objectFit: 'cover',
+	},
+	link: {
+		textDecoration: 'none',
 	},
 });
 
@@ -24,7 +26,7 @@ export function Pokemon({ pokemons }) {
 	const classes = useStyles();
 
 	return (
-		<Link to={`/pokemon/${pokemons.id}`}>
+		<Link className={classes.link} to={`/pokemon/${pokemons.id}`}>
 			<Card className={classes.root}>
 				<CardActionArea>
 					<CardMedia

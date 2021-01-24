@@ -1,6 +1,6 @@
 import { Pokemon } from './Pokemon';
 import { makeStyles } from '@material-ui/core/styles';
-import { filterArray } from '../../utils/filter';
+import { typeWeaknessFilter } from '../../utils/filter';
 import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,13 +14,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export function PokemonList({ pokemons, searchTerm, filters }) {
+export function PokemonList({ pokemons, searchTerm, types, weaknesses }) {
 	const classes = useStyles();
 
 	const searchedPokemon = pokemons.filter((pokemon) =>
 		pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
 	);
-	const filteredSearch = filterArray(searchedPokemon, filters);
+	const filteredSearch = typeWeaknessFilter(searchedPokemon, types, weaknesses);
 
 	return (
 		<div>
