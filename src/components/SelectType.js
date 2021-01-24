@@ -1,18 +1,9 @@
-export function SelectType({ pokemons, filters, setFilters }) {
+export function SelectType({ pokemons, setTypes }) {
 	const arrOfPokemonTypes = pokemons.flatMap((pokemon) => pokemon.type);
 	const pokemonTypes = Array.from(new Set(arrOfPokemonTypes)).sort();
 
 	const handleChange = (e) => {
-		setFilters({
-			...filters,
-			type: (type) =>
-				type.every((x) =>
-					Array.from(
-						e.target.selectedOptions,
-						(option) => option.value
-					).includes(x)
-				),
-		});
+		setTypes(Array.from(e.target.selectedOptions, (option) => option.value));
 	};
 
 	return (
